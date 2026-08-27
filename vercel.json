@@ -1,0 +1,8 @@
+{
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "framework": "static",
+  "env": {
+    "ANALYTICS_ID": "@ANALYTICS_ID"
+  }
+}
