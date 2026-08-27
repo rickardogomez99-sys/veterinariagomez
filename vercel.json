@@ -1,7 +1,4 @@
 {
   "buildCommand": "",
-  "outputDirectory": ".",
-  "env": {
-    "ANALYTICS_ID": "@ANALYTICS_ID"
-  }
+  "outputDirectory": "."
 }
