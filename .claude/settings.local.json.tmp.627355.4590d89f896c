@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git rm *)",
+      "Bash(echo \".directory\")",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Polish: SVG map, mobile refinements, remove social links *)"
+    ]
+  }
+}
