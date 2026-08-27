@@ -435,80 +435,220 @@ footer{padding:40px 0 90px;}
 .status-page .icon{width:64px;height:64px;margin:0 auto 20px;color:var(--blue);}
 
 /* =========================================================================
-   MOBILE POLISH — refinements for phones only (≤640px).
+   MOBILE POLISH — comprehensive optimizations for phones only (≤640px).
    Everything above this point (including all existing breakpoints up to
    860px for tablets) is untouched, so desktop and tablet layouts are
-   unaffected. This block only tightens spacing, typography and touch
-   targets for small phone screens.
+   completely unaffected. This block tightens spacing, typography, touch
+   targets, and performance for small phone screens.
    ========================================================================= */
 @media (max-width:640px){
 
+  /* ---- Document & Performance ---- */
   .wrap{padding:0 20px;}
+  html{scroll-behavior:auto;}
 
-  /* ---- Nav ---- */
+  /* ---- Nav: optimize for touch ---- */
   .nav-inner{padding:9px 20px;}
   .brand{font-size:18px;gap:8px;}
   .brand img{width:32px;height:32px;}
-  .btn-call{padding:11px 16px;font-size:12.5px;}
+  .nav-links a{font-size:11.5px;}
+  .btn-call{
+    padding:14px 18px;font-size:12.5px;
+    min-height:48px;min-width:48px;
+  }
 
-  /* ---- Hero ---- */
-  .hero{padding:40px 0 32px;}
+  /* ---- Hero: mobile-first hierarchy ---- */
+  .hero{padding:40px 0 28px;}
+  .hero-inner{gap:24px;}
   .eyebrow{font-size:11px;padding:4px 9px;margin-bottom:14px;}
-  h1.title{letter-spacing:0.2px;margin:0 0 14px;}
-  .lede{font-size:16.5px;margin:0 0 20px;}
-  .rating-line{font-size:13px;margin-bottom:12px;}
-  .fb-line{font-size:12px;margin-bottom:22px;}
-  .cta-row{flex-direction:column;gap:12px;}
+  h1.title{
+    font-size:clamp(38px,8vw,58px);
+    line-height:0.9;
+    letter-spacing:0.2px;
+    margin:0 0 12px;
+  }
+  .lede{font-size:16px;line-height:1.55;margin:0 0 18px;}
+  .rating-line{font-size:12.5px;margin-bottom:10px;}
+  .fb-line{font-size:11.5px;margin-bottom:20px;}
+  .cta-row{flex-direction:column;gap:10px;}
   .cta-row .btn-call,
   .cta-row .btn-outline{
     width:100%;justify-content:center;
-    padding:14px 18px;font-size:13.5px;
+    padding:16px 18px;
+    font-size:13.5px;
+    min-height:48px;
+    border-radius:3px;
   }
-  .stamp-frame{width:150px;height:150px;margin-bottom:4px;}
+  .stamp-frame{
+    width:min(140px,60vw);
+    height:min(140px,60vw);
+    margin:0 auto 12px;
+  }
 
-  /* ---- Alert strip ---- */
-  .alert-strip{padding:14px 0;}
-  .alert-inner{flex-direction:column;align-items:flex-start;gap:6px;text-align:left;font-size:12.5px;}
+  /* ---- Alert strip: compact ---- */
+  .alert-strip{padding:12px 0;}
+  .alert-inner{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+    text-align:left;
+    font-size:12.5px;
+    line-height:1.4;
+  }
+  .alert-inner .badge{font-size:10.5px;padding:2px 8px;}
 
-  /* ---- Storefront photo ---- */
-  .storefront img{height:180px;}
+  /* ---- Storefront photo: optimized height ---- */
+  .storefront img{
+    height:min(180px,50vw);
+    object-fit:cover;
+    object-position:center 55%;
+  }
 
-  /* ---- Section headers ---- */
-  .section-head{flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:26px;}
-  .section-head h2{font-size:28px;}
-  .section-tag{font-size:11px;}
+  /* ---- Section headers: mobile layout ---- */
+  .section-head{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+    margin-bottom:22px;
+  }
+  .section-head h2{
+    font-size:clamp(24px,6vw,32px);
+    line-height:1.1;
+    margin:0;
+  }
+  .section-tag{font-size:11px;letter-spacing:0.08em;}
 
-  /* ---- Ledger / inventario ---- */
-  .ledger{padding:44px 0;}
-  .ledger-col{padding:22px 20px;}
-  .ledger-col h3{font-size:21px;}
+  /* ---- Ledger / Inventory: vertical stack ---- */
+  .ledger{padding:40px 0;}
+  .ledger-grid{border-width:1px;}
+  .ledger-col{
+    padding:20px 18px;
+    border-left:none !important;
+    border-top:none !important;
+  }
+  .ledger-col:first-child{border-bottom:1px solid var(--ink);}
+  .ledger-col h3{font-size:19px;margin:0 0 2px;}
+  .ledger-col .sub{font-size:11.5px;margin-bottom:16px;}
   .ledger-list li{
     flex-wrap:wrap;
     row-gap:4px;
-    font-size:14.5px;
-    padding:11px 0;
+    font-size:14px;
+    padding:10px 0;
+  }
+  .ledger-list li span.tag{font-size:10.5px;}
+
+  /* ---- Why cards: single column ---- */
+  .why{padding:40px 0;}
+  .why-grid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+  .why-card{padding:18px 16px;}
+  .why-card .mark{width:38px;height:38px;}
+  .why-card h3{font-size:16px;margin:10px 0 8px;}
+  .why-card p{font-size:14px;line-height:1.5;}
+
+  /* ---- Reviews: optimize card layout ---- */
+  .reviews{padding:40px 0;}
+  .review-grid{
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+  .review-card{
+    padding:16px 14px;
+    font-size:13.5px;
+    line-height:1.5;
+  }
+  .review-card .stars{font-size:14px;margin-bottom:8px;}
+  .review-card p{margin:8px 0;}
+  .review-card .who{font-size:11.5px;}
+
+  /* ---- Contact form: mobile friendly ---- */
+  .contact{padding:40px 0;}
+  .contact-grid{gap:28px;}
+  input, textarea{
+    padding:14px 12px;
+    font-size:16px;
+    border-radius:3px;
+  }
+  input, textarea{min-height:48px;}
+  textarea{min-height:120px;}
+  button.submit{
+    width:100%;
+    padding:16px 18px;
+    min-height:48px;
+    font-size:14px;
   }
 
-  /* ---- Locations ---- */
-  .loc-grid{grid-template-columns:1fr;gap:32px;}
-  .loc-block h3{font-size:15px;}
-  .map-container{height:200px;}
+  /* ---- Locations: responsive map ---- */
+  .loc-grid{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+  .loc-block h3{font-size:14.5px;}
+  .loc-block p{font-size:13.5px;line-height:1.5;}
+  .big-link{font-size:15px;}
+  .map-container{height:220px;padding-bottom:0;}
 
-  /* ---- Footer ---- */
-  .foot-inner{flex-direction:column;gap:10px;font-size:11.5px;}
-  .foot-social{justify-content:flex-start;}
-  .foot-legal{gap:10px;}
+  /* ---- Footer: mobile layout ---- */
+  .foot-inner{
+    flex-direction:column;
+    gap:12px;
+    font-size:11px;
+    line-height:1.5;
+  }
+  .foot-social{
+    justify-content:flex-start;
+    gap:14px;
+  }
+  .foot-social a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:40px;
+    min-height:40px;
+  }
+  .foot-social a svg{width:18px;height:18px;}
+  .foot-legal{
+    gap:8px;
+    flex-wrap:wrap;
+  }
 
-  /* ---- Legal pages ---- */
-  .simple-page{padding:40px 0 60px;}
-  .simple-page h1{font-size:clamp(28px,5vw,42px);}
-  .simple-page h2{font-size:20px;}
-  .simple-page p, .simple-page li{font-size:14.5px;}
+  /* ---- Legal pages: mobile typography ---- */
+  .simple-page{padding:36px 0 50px;}
+  .simple-page h1{
+    font-size:clamp(26px,5vw,38px);
+    line-height:1.1;
+  }
+  .simple-page h2{font-size:18px;margin:24px 0 8px;}
+  .simple-page p, .simple-page li{font-size:14px;line-height:1.6;}
+  .simple-page ul{margin:0 0 16px;}
+  .simple-page .legal-note{padding:14px 12px;font-size:12px;}
 
-  /* ---- Status pages ---- */
-  .status-page{padding:40px 16px;}
-  .status-page .status-code{font-size:clamp(60px,16vw,120px);}
-  .status-page h1{font-size:clamp(22px,3.5vw,28px);}
-  .status-page p{font-size:14px;}
+  /* ---- Status pages: centered, minimal ---- */
+  .status-page{
+    padding:40px 16px;
+    min-height:calc(100vh - 60px);
+  }
+  .status-page .status-code{font-size:clamp(56px,14vw,100px);}
+  .status-page h1{font-size:clamp(20px,3vw,26px);}
+  .status-page p{font-size:13.5px;line-height:1.5;}
+  .status-page .icon{width:56px;height:56px;}
+
+  /* ---- Cookie banner: compact ---- */
+  .cookie-banner{
+    padding:14px 16px;
+    gap:12px;
+  }
+  .cookie-banner p{font-size:12px;line-height:1.5;}
+  .cookie-actions{gap:8px;}
+  .cookie-actions button{padding:10px 14px;font-size:12px;}
+
+  /* ---- Float call button ---- */
+  .float-call{
+    width:56px;height:56px;
+    bottom:16px;right:16px;
+  }
+  .float-call svg{width:28px;height:28px;}
 
 }
